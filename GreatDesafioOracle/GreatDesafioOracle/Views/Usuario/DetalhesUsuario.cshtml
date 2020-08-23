@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "DetalhesUsuario";
+    var detalhes = ViewData["Usuario"] as Usuario;
+}
+
+<h1>Detalhes deste Usuario</h1>
+<p>Nome: @detalhes.Nome</p>
+<p>CPF: @detalhes.Cpf</p>
+<p>RG: @detalhes.Rg</p>
+<p>Nome da Mãe: @detalhes.Nomemae</p>
+
+<p>Data de Nascimento: @detalhes.Datanascimento</p>
+<p>Data de Cadastro: @detalhes.Datacadastro</p>
