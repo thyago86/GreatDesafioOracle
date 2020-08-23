@@ -30,36 +30,46 @@ namespace GreatDesafioOracle.Models
         {
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("USUARIO");
-
-                entity.Property(e => e.Datacadastro)
-                    .HasColumnName("DATACADASTRO")
-                    .HasColumnType("DATE");
-
-                entity.Property(e => e.Datanascimento)
-                    .HasColumnName("DATANASCIMENTO")
-                    .HasColumnType("DATE");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("NUMBER(38)");
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Cpf)
+                    .HasColumnName("CPF")
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Datacadastro)
+                    .HasColumnName("DATACADASTRO")
+                    .HasColumnType("DATE")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Datanascimento)
+                    .HasColumnName("DATANASCIMENTO")
+                    .HasColumnType("DATE")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Nome)
                     .HasColumnName("NOME")
                     .HasMaxLength(300)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Nomemae)
                     .HasColumnName("NOMEMAE")
                     .HasMaxLength(300)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Rg)
                     .HasColumnName("RG")
                     .HasMaxLength(20)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .ValueGeneratedOnAdd();
             });
 
             modelBuilder.HasSequence("LOGMNR_DIDS$");
@@ -75,6 +85,8 @@ namespace GreatDesafioOracle.Models
             modelBuilder.HasSequence("MVIEW$_ADVSEQ_ID");
 
             modelBuilder.HasSequence("ROLLING_EVENT_SEQ$");
+
+            modelBuilder.HasSequence("USUARIO_SEQ");
 
             OnModelCreatingPartial(modelBuilder);
         }

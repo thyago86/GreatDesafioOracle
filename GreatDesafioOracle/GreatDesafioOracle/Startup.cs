@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using GreatDesafioOracle.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 namespace GreatDesafioOracle
@@ -29,7 +32,9 @@ namespace GreatDesafioOracle
                 .AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddMvc();
-            
+            services.AddHttpContextAccessor();
+            var connection = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE)));Persist Security Info=True;User Id=SYSTEM;Password=1001234;";
+            services.AddDbContext<ModelContext>(options => options.UseOracle(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,9 +61,9 @@ namespace GreatDesafioOracle
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Usuario}/{action=ListarTodosOsUsuarios}/{id?}");
             });
-            app.UseResponseCompression();
+            
         }
     }
 }

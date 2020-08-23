@@ -45,7 +45,7 @@ namespace GreatDesafioOracle.Controllers
             }
             catch (Exception ex)
             {
-                return "Problema ao conectar ao banco";
+                return ex.InnerException.Message;
             }
 
         }
