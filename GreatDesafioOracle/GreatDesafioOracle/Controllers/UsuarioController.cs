@@ -84,7 +84,7 @@ namespace GreatDesafioOracle.Controllers
             var checkUsuario = _context.Usuario.Where(a => a.Nome.Contains(nome)).ToList();
 
             return checkUsuario;
-        }
+        }        
 
         [Microsoft.AspNetCore.Mvc.HttpGet]
         public IActionResult ListarTodosOsUsuarios()
